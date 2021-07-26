@@ -1,8 +1,43 @@
 /** @jsxImportSource theme-ui */
 
 import { keyframes } from "@emotion/react";
-export default function Header() {
-  return <h1>Header</h1>;
+import { Container, Flex, Button } from "theme-ui";
+import { Link } from "react-scroll";
+import Logo from "components/Logo";
+import LogoDark from "assets/logo.svg";
+import menuItems from "./header.data";
+
+export default function Header({ className }) {
+  const { header, container, nav } = styles;
+  return (
+    <header sx={header} className={className} id="header">
+      <Container sx={container}>
+        <Logo src={LogoDark} />
+        <Flex as="nav" sx={nav}>
+          {menuItems.map((menuItem, i) => (
+            <Link
+              activeClass="active"
+              to={menuItem.path}
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              key={i}
+            >
+              {menuItem.label}
+            </Link>
+          ))}
+        </Flex>
+        <Button
+          className="donate__btn"
+          variant="secondary"
+          aria-label="Get Started"
+        >
+          Get Started
+        </Button>
+      </Container>
+    </header>
+  );
 }
 
 const positionAnim = keyframes`

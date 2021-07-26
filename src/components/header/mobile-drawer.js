@@ -16,6 +16,10 @@ const social = [
   },
   {
     path: "/",
+    icon: <FaGithubAlt />,
+  },
+  {
+    path: "/",
     icon: <FaDribbble />,
   },
 ];
