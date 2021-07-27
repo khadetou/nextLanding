@@ -1,9 +1,15 @@
+/** @jsxImportSource theme-ui */
+
 import {
   FaFacebookF,
   FaTwitter,
   FaGithubAlt,
   FaDribbble,
 } from "react-icons/fa";
+import { IoMdMenu, IoMdClose } from "react-icons/io";
+import Drawer from "components/drawer";
+import { Box } from "theme-ui";
+import { useState } from "react";
 
 const social = [
   {
@@ -24,8 +30,24 @@ const social = [
   },
 ];
 
-export default function mobileDrawer() {
-  return <h1>Mobile Drawer</h1>;
+export default function MobileDrawer() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { handler, drawer, close } = styles;
+  return (
+    <Drawer
+      width="320px"
+      drawerHandler={
+        <Box sx={handler}>
+          <IoMdMenu size="26px" />
+        </Box>
+      }
+      open={isDrawerOpen}
+      toggleHandler={() => setIsDrawerOpen(!isDrawerOpen)}
+      closeButton={<IoMdClose size="24px" color="#000000" />}
+      drawerStyle={drawer}
+      closeBtnStyle={close}
+    ></Drawer>
+  );
 }
 
 const styles = {

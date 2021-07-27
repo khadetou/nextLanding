@@ -6,6 +6,7 @@ import { Link } from "react-scroll";
 import Logo from "components/Logo";
 import LogoDark from "assets/logo.svg";
 import menuItems from "./header.data";
+import MobileDrawer from "./mobile-drawer";
 
 export default function Header({ className }) {
   const { header, container, nav } = styles;
@@ -35,6 +36,7 @@ export default function Header({ className }) {
         >
           Get Started
         </Button>
+        <MobileDrawer />
       </Container>
     </header>
   );
