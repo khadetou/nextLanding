@@ -1,17 +1,18 @@
 /** @jsxImportSource theme-ui */
-
 import {
   FaFacebookF,
   FaTwitter,
   FaGithubAlt,
   FaDribbble,
 } from "react-icons/fa";
+import { Link } from "react-scroll";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 import Drawer from "components/drawer";
 import { Box } from "theme-ui";
 import { useState } from "react";
-
-const social = [
+import Scrollbars from "react-custom-scrollbars-2";
+import menuItems from "./header.data";
+const socials = [
   {
     path: "/",
     icon: <FaFacebookF />,
@@ -32,7 +33,7 @@ const social = [
 
 export default function MobileDrawer() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const { handler, drawer, close } = styles;
+  const { handler, drawer, close, content, menu, menuFooter, social } = styles;
   return (
     <Drawer
       width="320px"
@@ -46,7 +47,36 @@ export default function MobileDrawer() {
       closeButton={<IoMdClose size="24px" color="#000000" />}
       drawerStyle={drawer}
       closeBtnStyle={close}
-    ></Drawer>
+    >
+      <Scrollbars autoHide>
+        <Box sx={content}>
+          <Box sx={menu}>
+            {menuItems.map((menuItem, i) => (
+              <Link
+                activeClass="active"
+                to={menuItem.path}
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+                key={i}
+              >
+                {menuItem.label}
+              </Link>
+            ))}
+          </Box>
+          <Box sx={menuFooter}>
+            <Box sx={social}>
+              {socials.map((socialItem, i) => (
+                <Box as="span" key={i} sx={social.icon}>
+                  <Link to={socialItem.path}>{socialItem.icon}</Link>
+                </Box>
+              ))}
+            </Box>
+          </Box>
+        </Box>
+      </Scrollbars>
+    </Drawer>
   );
 }
 
