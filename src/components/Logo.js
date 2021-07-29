@@ -2,8 +2,6 @@
 import { Image } from "theme-ui";
 import { Link } from "components/link";
 export default function Logo({ src, ...rest }) {
-  const res = { ...rest };
-  console.log(res);
   return (
     <Link
       path="/"
